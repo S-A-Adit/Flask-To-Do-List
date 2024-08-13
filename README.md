@@ -17,7 +17,7 @@ Features
 
 Installation:
 
-1.git clone https://github.com/yourusername/flask-todo-list.git
+1.git clone https://github.com/S-A-Adit/Flask-To-Do-List.git
 
 2.cd Flask-todo-list
 
