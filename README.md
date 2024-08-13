@@ -21,17 +21,6 @@ Installation:
 6.Run the Flask application:
 ---flask run
 
-Project Structure
-flask-todo-list/
-│
-├── templates/
-│   ├── index.html        # The main page displaying the Todo List
-│   └── edit.html         # The page for editing a task
-│
-├── app.py                # The main Flask application
-├── requirements.txt      # Python dependencies
-└── README.md             # Project documentation
-
 
 Usage
 Add a Task: Type your task in the input box and click "Add".
