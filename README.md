@@ -12,7 +12,6 @@ Features
 
 -Delete Tasks: Users can delete tasks from the list.
 
--Responsive Design: The interface is responsive and adjusts to different screen sizes.
 
 
 Installation:
