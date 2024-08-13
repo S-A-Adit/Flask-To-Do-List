@@ -20,6 +20,8 @@ Installation:
 ---pip install -r requirements.txt
 6.Run the Flask application:
 ---flask run
+
+Project Structure
 flask-todo-list/
 │
 ├── templates/
@@ -29,11 +31,15 @@ flask-todo-list/
 ├── app.py                # The main Flask application
 ├── requirements.txt      # Python dependencies
 └── README.md             # Project documentation
+
+
 Usage
 Add a Task: Type your task in the input box and click "Add".
 Edit a Task: Click the "Edit" link next to the task you want to modify, update the task, and click "Save".
 Mark as Complete: Check the checkbox next to the task to mark it as complete. The task will be crossed out.
 Delete a Task: Click the "Delete" link next to the task to remove it from the list.
+
+
 Contributing
 Contributions are welcome! Feel free to submit a Pull Request.
 
