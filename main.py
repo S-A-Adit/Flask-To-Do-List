@@ -1,61 +1,64 @@
 from flask import Flask, redirect, url_for, request, render_template
+from dataclasses import dataclass
+from typing import List
 
-# Initialize the Flask application
 app = Flask(__name__, template_folder="templates")
 
-# A list to store all the to-do items
-todos = []
+
+@dataclass
+class TodoItem:
+    task: str
+    done: bool = False
 
 
-# Route for the home page, which displays the to-do list
+# In-memory list to store todos
+todo_items: List[TodoItem] = []
+
+
 @app.route('/')
 def index():
-    """Render the main page with the current list of todos."""
-    return render_template('index.html', todos=todos)
+    """Render the main page with the current list of to-do items."""
+    return render_template('index.html', todos=todo_items)
 
 
-# Route to handle adding a new to-do item
 @app.route('/add', methods=['POST'])
 def add():
-    """Add a new task to the todo list."""
-    todo_task = request.form.get('todo')
-    if todo_task:
-        # Append the new to-do item to the list with a 'done' status of False
-        todos.append({'task': todo_task, 'done': False})
+    """Add a new task to the to-do list."""
+    task = request.form.get('todo')
+    if task:
+        todo_items.append(TodoItem(task=task))
     return redirect(url_for('index'))
 
 
-# Route to handle editing an existing to-do item
-@app.route('/edit/<int:index>', methods=['POST', 'GET'])
-def edit(index):
-    """Edit an existing task in the todo list."""
-    todo = todos[index]
+@app.route('/edit/<int:index>', methods=['GET', 'POST'])
+def edit(index: int):
+    """Edit an existing to-do item."""
+    if 0 <= index < len(todo_items):
+        todo = todo_items[index]
 
-    if request.method == 'POST':
-        # Update the task with the new value from the form submission
-        updated_task = request.form.get('todo')
-        if updated_task:
-            todo['task'] = updated_task
-        return redirect(url_for('index'))
+        if request.method == 'POST':
+            updated_task = request.form.get('todo')
+            if updated_task:
+                todo.task = updated_task
+            return redirect(url_for('index'))
 
-    # Render the edit.html template and pass the current to-do item and its index to it
-    return render_template('edit.html', todo=todo, index=index)
+        return render_template('edit.html', todo=todo, index=index)
+    return redirect(url_for('index'))
 
 
-# Route to toggle the 'done' status of a to-do item
 @app.route('/check/<int:index>')
-def check(index):
+def check(index: int):
     """Toggle the completion status of a task."""
-    todos[index]['done'] = not todos[index]['done']
+    if 0 <= index < len(todo_items):
+        todo_items[index].done = not todo_items[index].done
     return redirect(url_for('index'))
 
 
-# Route to handle deleting a to-do item
 @app.route('/delete/<int:index>')
-def delete(index):
-    """Delete a task from the todo list."""
-    if 0 <= index < len(todos):
-        del todos[index]
+def delete(index: int):
+    """Delete a task from the to-do list."""
+    if 0 <= index < len(todo_items):
+        del todo_items[index]
     return redirect(url_for('index'))
 
 
