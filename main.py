@@ -1,8 +1,8 @@
 from flask import Flask, redirect, url_for, request, render_template
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import List
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__, template_folder="templates", static_folder="static")
 
 
 @dataclass
@@ -18,7 +18,9 @@ todo_items: List[TodoItem] = []
 @app.route('/')
 def index():
     """Render the main page with the current list of to-do items."""
-    return render_template('index.html', todos=todo_items)
+    # Convert dataclass objects to dicts for React
+    todo_dicts = [asdict(todo) for todo in todo_items]
+    return render_template('index.html', todos=todo_dicts)
 
 
 @app.route('/add', methods=['POST'])
@@ -42,7 +44,9 @@ def edit(index: int):
                 todo.task = updated_task
             return redirect(url_for('index'))
 
-        return render_template('edit.html', todo=todo, index=index)
+        # Convert dataclass to dictionary for JSON in template
+        return render_template('edit.html', todo=asdict(todo), index=index)
+
     return redirect(url_for('index'))
 
 
