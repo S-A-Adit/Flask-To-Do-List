@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="root" data-todos='{{ todos | tojson | safe }}'></div>
+    
+    <script>
+        // Safe parsing of the initial data
+        window.INITIAL_STATE = {
+            todos: JSON.parse(document.getElementById('root').dataset.todos)
+        };
+    </script>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='js/app.jsx') }}"></script>
+</body>
+</html>
