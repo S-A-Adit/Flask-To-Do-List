@@ -1,25 +1,17 @@
-Usage
-Add task: Type task + click Add
+# Flask Todo List  
 
-Edit: Click Edit → Modify → Save
+A simple and user-friendly Todo List application built with Flask.  
 
-Complete: Check the checkbox
+## Features  
+- ✅ Add, edit, delete tasks  
+- ✔️ Toggle task completion  
+- 🚀 Dynamic web interface  
 
-Delete: Click Delete
-
-4.Activate the virtual environment:
-
----On Windows:
-         venv\Scripts\activate
-         
----On macOS/Linux:
-         source venv/bin/activate
-         
-5.Install the required packages:
----pip install -r requirements.txt
-
-6.Run the Flask application:
----flask run
+## Installation  
+1. Clone the repo:  
+   ```bash
+   git clone https://github.com/S-A-Adit/Flask-To-Do-List.git
+   cd Flask-todo-list
 
 
 
