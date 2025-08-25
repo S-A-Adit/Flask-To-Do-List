@@ -149,7 +149,7 @@ const App = () => {
               </div>
               <div className="modal-actions">
                 <button type="submit" className="submit-btn">Add Task</button>
-                <button type="button" onClick={() => setShowModal(false)} className="close-modal">Cancel</button>
+                <button type="button" onClick={() => setShowModal(false)} className="close-modal"></button>
               </div>
             </form>
           </div>
@@ -160,3 +160,4 @@ const App = () => {
 };
 
 export default App;
+
